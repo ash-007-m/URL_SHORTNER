@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortened URL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("https://t4.ftcdn.net/jpg/02/93/73/01/240_F_293730150_uqGTY0JxasJzFqBMhFpACRDPeygQG1G1.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.745);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 400px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .note {
+            color: #333333;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .copy-button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        a:last-of-type {
+        margin-top: 20px;
+        background-color: #dc3545; /* Red background color */
+        color: #fff; /* White text color */
+        padding: 10px 20px; /* Adjust padding as needed */
+        border-radius: 4px; /* Rounded corners */
+        text-align: center; /* Center the text */
+        display: inline-block; /* Display as inline block */
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        text-decoration: none; /* Remove default underline */
+    }
+
+     a:last-of-type:hover {
+        background-color: #c82333; /* Darker red color on hover */
+    } 
+    .btn {
+        margin-top: 20px;
+        background-color: #28a745; /* Green background color */
+        color: #fff; /* White text color */
+        padding: 10px 20px; /* Adjust padding as needed */
+        border: none; /* Remove border */
+        border-radius: 4px; /* Rounded corners */
+        text-align: center; /* Center the text */
+        display: inline-block; /* Display as inline block */
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        text-decoration: none; /* Remove default underline */
+        cursor: pointer; /* Add pointer cursor on hover */
+    }
+
+    .btn:hover {
+        background-color: #218838; /* Darker green color on hover */
+    }
+    </style>
+    <script>
+       
+     
+   
+    
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard!');
+        }
+    </script>
+</head> 
+<body>
+    <div class="container">
+        <h2>SHORT URL FOUNDED</h2>
+        <p>CLICK ON LINK OR COPY TO IT TO THE CLIPBOARD:</p>
+           
+        <a href="<%= short.full %>"><%= short.full %></a>
+        <button class="copy-button" onclick="copyToClipboard('<%= short.full %>')">Copy Link</button>
+     
+       <br>
+        <a href="<%= short.Shorturl %>"><%= short.Shorturl %></a>
+        <button class="copy-button" onclick="copyToClipboard('http://localhost:5000/<%= short.Shorturl %>')">Copy Link</button>
+       <br>
+        <p class="note" id="noteText">NOTE: <br> <%= short.note %></p>
+        <button class="copy-button" onclick="copyToClipboard('<%= short.note %>')">Copy Note</button>
+        <form action="/goback" method="POST" class="my-5">
+            <input type="hidden" name="username" value="<%= username %>">
+            <button class="btn btn-success" type="submit">Search Another</button>
+        </form>
+        <br>
+        <form action="/logout" method="get" class="my-5">
+           
+            <button class="btn btn-success" type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
